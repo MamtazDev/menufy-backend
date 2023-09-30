@@ -1,22 +1,30 @@
 const Joi = require('joi');
 const { password, objectId } = require('./custom.validation');
 
-const createUser = {
+const resturantProfile = {
   body: Joi.object().keys({
-    email: Joi.string().required().email(),
+    name: Joi.string(),
+    dateOfBirth:  Joi.string().required().custom(password),
+    address: Joi.string(),
+    currency: Joi.string(),
+    phone: Joi.string(),
+    about: Joi.string(),
     password: Joi.string().required().custom(password),
-    name: Joi.string().required(),
-    role: Joi.string().required().valid('user', 'admin'),
+    email: Joi.string().required().email(),
+    username: Joi.string(),
+    businessname: Joi.string(),
   }),
 };
 
-const getUsers = {
+const features = {
   query: Joi.object().keys({
-    name: Joi.string(),
-    role: Joi.string(),
-    sortBy: Joi.string(),
-    limit: Joi.number().integer(),
-    page: Joi.number().integer(),
+    title: Joi.string(),
+    featureArray: Joi.array().items(
+      Joi.object({
+        icon: Joi.string(),
+        feature: Joi.string()
+      })
+    ).has(Joi.object({ icon: Joi.string(), feature: Joi.string() }))
   }),
 };
 
@@ -26,7 +34,7 @@ const getUser = {
   }),
 };
 
-const updateUser = {
+const resturant  = {
   params: Joi.object().keys({
     userId: Joi.required().custom(objectId),
   }),
@@ -46,9 +54,6 @@ const deleteUser = {
 };
 
 module.exports = {
-  createUser,
-  getUsers,
-  getUser,
-  updateUser,
-  deleteUser,
+  features,
+  resturantProfile
 };
