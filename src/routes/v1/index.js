@@ -3,6 +3,7 @@ const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
 const baseRoute = require('./base.route');
 const resturantRoute = require('./resturant.route');
+const menuSettingRoute = require('./menuSetting.route');
 const docsRoute = require('./docs.route');
 const config = require('../../config/config');
 
@@ -20,6 +21,10 @@ const defaultRoutes = [
   {
     path: '/resturant',
     route: resturantRoute,
+  },
+  {
+    path: '/setting',
+    route: menuSettingRoute,
   },
   {
     path: '/test',
