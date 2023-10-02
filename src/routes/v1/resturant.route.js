@@ -4,6 +4,8 @@ const validate = require('../../middlewares/validate');
 const userValidation = require('../../validations/user.validation');
 const userController = require('../../controllers/user.controller');
 
+const resturantController = require('../../controllers/resturant.controller');
+
 const router = express.Router();
 
 router
@@ -11,11 +13,25 @@ router
   .post(auth('manageUsers'), validate(userValidation.createUser), userController.createUser)
   .get(auth('getUsers'), validate(userValidation.getUsers), userController.getUsers);
 
+  // resturant
 router
-  .route('/:userId')
-  .get(auth('getUsers'), validate(userValidation.getUser), userController.getUser)
-  .patch(auth('manageUsers'), validate(userValidation.updateUser), userController.updateUser)
-  .delete(auth('manageUsers'), validate(userValidation.deleteUser), userController.deleteUser);
+  .route('/:resturantId')
+  .post(resturantController.createResturant)
+  .get(resturantController.getResturant)
+  .patch(resturantController.updateResturant)
+  .delete(resturantController.deleteResturant);
+
+  // hours 
+router
+  .route('/hour')
+  .get( resturantController.getUser)
+  .patch(  resturantController.updateUser)
+  .delete(  resturantController.deleteUser);
+
+  // features
+
+  // links 
+ 
 
 module.exports = router;
 
