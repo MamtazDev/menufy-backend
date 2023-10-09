@@ -4,11 +4,11 @@ const resturantSchema = mongoose.Schema(
   {
 
     cover:{
-      type: File,
+      type: Buffer,
       required: false,
     },
     profile:{
-      type: File,
+      type: Buffer,
       required: false,
     },
 

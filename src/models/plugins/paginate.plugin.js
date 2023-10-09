@@ -32,6 +32,18 @@ const paginate = (schema) => {
       sort = 'createdAt';
     }
 
+
+
+    let sortData = "";
+    if(options.sortBy){
+      let  sortingCriteria = []
+
+      options.sortBy.split(',').forEach((sortOption) => {
+        const [ key, order ] = sortOption.split(":")
+      } )
+    }
+
+
     const limit = options.limit && parseInt(options.limit, 10) > 0 ? parseInt(options.limit, 10) : 10;
     const page = options.page && parseInt(options.page, 10) > 0 ? parseInt(options.page, 10) : 1;
     const skip = (page - 1) * limit;

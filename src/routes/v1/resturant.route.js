@@ -5,28 +5,40 @@ const userValidation = require('../../validations/user.validation');
 const userController = require('../../controllers/user.controller');
 
 const resturantController = require('../../controllers/resturant.controller');
+const resturantHourController = require('../../controllers/resturantHour.controller');
 
 const router = express.Router();
 
+const multer = require('multer'); // For handling file uploads
+const upload = multer(); // Configure multer for handling multipart/form-data
+
+
+
 router
   .route('/')
-  .post(auth('manageUsers'), validate(userValidation.createUser), userController.createUser)
-  .get(auth('getUsers'), validate(userValidation.getUsers), userController.getUsers);
+  .post( upload.fields([{ name: 'cover', maxCount: 1 }, { name: 'profile', maxCount: 1 }]),  resturantController.createResturant)
+  // .get( userController.getUsers)
+  // .patch( userController.getUsers)
+  // .delete( userController.getUsers);
+
 
   // resturant
 router
   .route('/:resturantId')
-  .post(resturantController.createResturant)
+  // .post(resturantController.createResturant)
   .get(resturantController.getResturant)
   .patch(resturantController.updateResturant)
   .delete(resturantController.deleteResturant);
 
+
+
   // hours 
 router
   .route('/hour')
-  .get( resturantController.getUser)
-  .patch(  resturantController.updateUser)
-  .delete(  resturantController.deleteUser);
+  .post( resturantHourController.createHour)
+  .get( resturantHourController.getHour)
+  .patch(  resturantHourController.updateHour)
+  .delete(  resturantHourController.deleteHour);
 
   // features
 

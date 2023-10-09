@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const hourSchema = mongoose.Schema(
   {
-    user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     
     days: {
       type: Array,
@@ -17,16 +17,6 @@ const hourSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-
-    // email: {
-    //   type: String,
-    //   required: true, 
-    // },
-    // email: {
-    //   type: String,
-    //   required: true,
-    // },
-    
   },
   {
     timestamps: true,
