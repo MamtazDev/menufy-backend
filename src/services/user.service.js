@@ -17,6 +17,10 @@ const createUser = async (userBody) => {
   return User.create(userBody);
 };
 
+const editUser = async(userBody) => {
+  console.log("User data from user body")
+}
+
 /**
  * Query for users
  * @param {Object} filter - Mongo filter
